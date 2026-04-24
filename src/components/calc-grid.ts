@@ -1,3 +1,5 @@
+import { handleInput } from "../core/engine";
+
 class CalcGrid extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -80,7 +82,6 @@ class CalcGrid extends HTMLElement {
       };
       if (map[key]) {
         e.preventDefault();
-        const { handleInput } = require("../core/engine");
         handleInput(map[key]);
         // Visual feedback
         const btn = this.querySelector(`[data-kbd="${key}"]`) as HTMLButtonElement;
