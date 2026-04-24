@@ -1,0 +1,280 @@
+/* Open Props — CSS variables */
+@import "open-props/style";
+@import "open-props/normalize";
+
+/* ─── Theme ─────────────────────────────────────────── */
+:root {
+  --calc-bg:          #1c1c1e;
+  --calc-surface:     #2c2c2e;
+  --calc-surface-2:   #3a3a3c;
+  --calc-border:      #48484a;
+  --calc-text:        #f2f2f7;
+  --calc-text-2:      #aeaeb2;
+  --calc-accent:      #0a84ff;
+  --calc-accent-2:    #0055b3;
+  --calc-operator:    #ff9f0a;
+  --calc-equals-bg:   #0a84ff;
+  --calc-clear:       #ff453a;
+  --calc-fn:          #5e5ce6;
+  --calc-memory:      #30d158;
+  --calc-radius:      var(--radius-3);
+  --calc-radius-lg:   var(--radius-4);
+  --calc-shadow:      var(--shadow-5);
+  --calc-w:           320px;
+}
+
+/* ─── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--calc-bg);
+  font-family: var(--font-sans);
+  color: var(--calc-text);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ─── App shell ─────────────────────────────────────── */
+.app {
+  width: var(--calc-w);
+  background: var(--calc-bg);
+  border-radius: var(--calc-radius-lg);
+  box-shadow: var(--calc-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--size-2) var(--size-3);
+  background: var(--calc-bg);
+}
+
+.app__title {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--calc-text-2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ─── Display ───────────────────────────────────────── */
+.display {
+  padding: var(--size-3) var(--size-4) var(--size-2);
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--size-1);
+  background: var(--calc-bg);
+}
+
+.display__memory {
+  font-size: var(--font-size-0);
+  color: var(--calc-memory);
+  font-weight: var(--font-weight-6);
+  min-height: 1em;
+  align-self: flex-start;
+}
+
+.display__expr {
+  font-size: var(--font-size-1);
+  color: var(--calc-text-2);
+  font-family: var(--font-mono);
+  min-height: 1.5em;
+  word-break: break-all;
+  text-align: right;
+}
+
+.display__main {
+  font-size: var(--font-size-7);
+  font-weight: var(--font-weight-3);
+  font-family: var(--font-mono);
+  line-height: 1;
+  color: var(--calc-text);
+  word-break: break-all;
+  text-align: right;
+  transition: color var(--ease-2) 0.15s;
+}
+
+.display__main--error {
+  font-size: var(--font-size-3);
+  color: var(--calc-clear);
+}
+
+/* ─── Grid ──────────────────────────────────────────── */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--calc-border);
+  border-top: 1px solid var(--calc-border);
+}
+
+.grid__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--calc-border);
+}
+
+.grid__row--memory .btn {
+  font-size: var(--font-size-0);
+  color: var(--calc-memory);
+  background: var(--calc-bg);
+}
+
+/* ─── Buttons ───────────────────────────────────────── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 64px;
+  font-size: var(--font-size-3);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-4);
+  border: none;
+  cursor: pointer;
+  transition:
+    background var(--ease-2) 0.1s,
+    transform var(--ease-2) 0.08s;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active,
+.btn--pressed {
+  transform: scale(0.94);
+  filter: brightness(1.2);
+}
+
+.btn--number {
+  background: var(--calc-surface);
+  color: var(--calc-text);
+}
+
+.btn--number:hover { background: var(--calc-surface-2); }
+
+.btn--operator {
+  background: var(--calc-surface);
+  color: var(--calc-operator);
+  font-size: var(--font-size-4);
+}
+
+.btn--operator:hover { background: var(--calc-surface-2); }
+
+.btn--equals {
+  background: var(--calc-equals-bg);
+  color: #fff;
+  font-size: var(--font-size-4);
+}
+
+.btn--equals:hover { background: var(--calc-accent-2); }
+
+.btn--clear {
+  background: var(--calc-surface);
+  color: var(--calc-clear);
+}
+
+.btn--clear:hover { background: var(--calc-surface-2); }
+
+.btn--function {
+  background: var(--calc-surface);
+  color: var(--calc-fn);
+  font-size: var(--font-size-1);
+}
+
+.btn--function:hover { background: var(--calc-surface-2); }
+
+.btn--memory {
+  background: var(--calc-bg);
+  color: var(--calc-memory);
+  font-size: var(--font-size-0);
+}
+
+.btn--memory:hover { background: var(--calc-surface); }
+
+.btn--wide {
+  grid-column: span 2;
+}
+
+/* ─── History ───────────────────────────────────────── */
+.history { position: relative; }
+
+.history__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  background: transparent;
+  border: 1px solid var(--calc-border);
+  color: var(--calc-text-2);
+  font-size: var(--font-size-0);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--calc-radius);
+  cursor: pointer;
+  transition: background var(--ease-2) 0.1s;
+}
+
+.history__toggle:hover {
+  background: var(--calc-surface);
+  color: var(--calc-text);
+}
+
+.history__panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 240px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--calc-surface);
+  border: 1px solid var(--calc-border);
+  border-radius: var(--calc-radius);
+  z-index: 10;
+  padding: var(--size-2);
+}
+
+.history__panel--open { display: block; }
+
+.history__item {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--calc-text-2);
+  padding: var(--size-1) 0;
+  border-bottom: 1px solid var(--calc-border);
+  text-align: right;
+}
+
+.history__item:last-child { border-bottom: none; }
+
+.history__empty {
+  font-size: var(--font-size-0);
+  color: var(--calc-text-2);
+  text-align: center;
+  padding: var(--size-3);
+  margin: 0;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--calc-border);
+  border-radius: var(--radius-pill);
+}

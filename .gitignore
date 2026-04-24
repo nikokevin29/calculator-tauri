@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Tauri build output
+src-tauri/target/
+
+# Generated icons (auto-generated in CI from app-icon.png)
+src-tauri/icons/
+
+# Bun lockfile (optional, include if you want reproducible installs)
+# bun.lockb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
