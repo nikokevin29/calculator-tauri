@@ -74,7 +74,7 @@ jobs:
         run: bun install
 
       - name: Generate icons
-        run: bunx @tauri-apps/cli icon src-tauri/app-icon.png
+        run: bun run tauri icon src-tauri/app-icon.png
 
       - name: Build Tauri app
         uses: tauri-apps/tauri-action@v0
